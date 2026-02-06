@@ -1,0 +1,251 @@
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#4a6fa5">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Оптимизатор раскроя стекла</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔪</text></svg>">
+    <link rel="icon" type="image/png"
+        href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAkElEQVQ4jWNgGAWjYBSMglEwCkTlAwcAADMDAwMDI7xOQoYAAwMDQz8DA0M/AyMD9Bi1f0ITAwMDQz8DA0M/AyMDAwMDAwMDEyMDAwMDAyMjAwMDw39GBgZGRkZGRkYGBkZGBkYGBgYGBkYGBgZGBgZGBgZGBgYGBkYGRkZGRgZGRkZGRgZGBkYGBkZGRkZGBiYAAQAA5qw3s6ro9B4AAAAASUVORK5CYII=">
+    <link rel="apple-touch-icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔪</text></svg>">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🔪 Оптимизатор раскроя стекла</h1>
+            <div class="subtitle">Интеллектуальная оптимизация с использованием AI алгоритмов</div>
+        </header>
+
+        <div class="main-content">
+            <div class="input-section">
+                <h2 class="section-title">📐 Параметры резки</h2>
+
+                <div class="form-group">
+                    <label>Размер листа стекла</label>
+                    <div class="dimensions">
+                        <div>
+                            <label>Ширина (см)</label>
+                            <input type="number" id="sheetWidth" value="260" min="1" step="1">
+                        </div>
+                        <div>
+                            <label>Высота (см)</label>
+                            <input type="number" id="sheetHeight" value="180" min="1" step="1">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Детали для резки</label>
+                    <div class="parts-input">
+                        <textarea id="partsInput" placeholder="Введите размеры в формате:
+ширина x высота
+
+Пример:
+# Максимально разные размеры
+187x63
+154x79
+223x47
+138x88
+196x59
+171x72
+209x52
+145x83
+182x68
+231x42
+162x76
+198x57
+177x70
+215x49
+152x81
+189x64
+167x74
+204x55
+142x86
+179x67
+226x45
+159x78
+193x61
+173x69
+211x51
+149x84
+185x65
+163x77
+200x58
+135x90"></textarea>
+                        <button class="example-btn" onclick="loadExample()">📋 Загрузить пример</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Дополнительные параметры</label>
+                    <div style="margin-top: 10px;">
+                        <input type="checkbox" id="allowRotation" checked>
+                        <label for="allowRotation" style="display: inline; margin-left: 8px; font-weight: 700;">
+                            Разрешить поворот деталей
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Алгоритм оптимизации</label>
+                    <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-top: 10px;">
+                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                            <input type="radio" name="algorithm" value="smart" checked>
+                            <span>🧠 Умный поиск (гарантия лучшего)</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                            <input type="radio" name="algorithm" value="greedy">
+                            <span>⚡ Быстрый</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                            <input type="radio" name="algorithm" value="parallel">
+                            <span>🔄 Параллельный</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                            <input type="radio" name="algorithm" value="genetic">
+                            <span>🧬 Генетический</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                            <input type="radio" name="algorithm" value="annealing">
+                            <span>🔥 Имитация отжига</span>
+                        </label>
+                    </div>
+                    <div style="margin-top: 10px; font-size: 0.9em; color: #444;">
+                        <div><strong>🧠 Умный поиск:</strong> тестирует все алгоритмы и выбирает лучший (дольше, но
+                            гарантированно)</div>
+                        <div><strong>🚀 Авто:</strong> умный выбор алгоритма по характеристикам задачи</div>
+                        <div><strong>⚡ Быстрый:</strong> мгновенный результат для простых задач</div>
+                        <div><strong>🔄 Параллельный:</strong> тестирует 6 стратегий, часто лучший</div>
+                        <div><strong>🧬 Генетический:</strong> эволюционный поиск для сложных форм</div>
+                        <div><strong>🔥 Отжиг:</strong> для очень плотной упаковки</div>
+                    </div>
+                </div>
+
+                <div class="buttons">
+                    <button class="btn btn-primary" onclick="calculateOptimization()">
+                        ⚡ Рассчитать оптимизацию
+                    </button>
+                    <button class="btn btn-secondary" onclick="clearAll()">
+                        🗑️ Очистить
+                    </button>
+                </div>
+            </div>
+
+            <div class="output-section">
+                <div class="loading" id="loading" style="display: none;">
+                    <div class="progress-container">
+                        <div class="progress-bar" id="progressBar"></div>
+                        <div class="progress-info">
+                            <span id="progressText">0%</span>
+                            <span id="progressStatus">Инициализация...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="results" style="display: none;">
+                    <h2 class="section-title">📊 Результаты оптимизации</h2>
+
+                    <div class="algorithm-info" id="algorithmInfo" style="display: none; margin-bottom: 25px;">
+                    </div>
+
+                    <div class="results-summary">
+                        <h3>Сводка</h3>
+                        <div class="summary-grid" id="summaryGrid"></div>
+                    </div>
+
+                    <div id="sheetsContainer"></div>
+
+                    <div class="instructions" id="instructionsContainer"></div>
+                </div>
+
+                <div id="initialState" style="text-align: center; padding: 50px 20px;">
+                    <h2 style="color: #666; margin-bottom: 20px;">👈 Введите параметры и нажмите "Рассчитать"</h2>
+                    <p style="color: #888; font-size: 1.1em;">Здесь появятся результаты оптимизации раскроя стекла
+                    </p>
+                    <div style="margin-top: 30px; color: #aaa;">
+                        <p>Рекомендуем использовать <strong>🧠 Умный поиск</strong> для гарантированно лучшего
+                            результата</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fallback для оффлайн режима -->
+    <div id="offline-notice"
+        style="display: none; position: fixed; top: 20px; right: 20px; background: #f44336; color: white; padding: 15px; border-radius: 8px; z-index: 10000;">
+        ⚠️ Вы работаете в оффлайн режиме
+    </div>
+
+    <script src="GlassCutting.js"></script>
+
+    <script>
+        // Регистрация Service Worker для PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker зарегистрирован:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('Ошибка регистрации ServiceWorker:', error);
+                    });
+            });
+        }
+
+        // Сохраняем введенные данные при обновлении страницы
+        window.addEventListener('beforeunload', () => {
+            const partsInput = document.getElementById('partsInput');
+            if (partsInput && partsInput.value.trim()) {
+                localStorage.setItem('glassCutter_lastInput', partsInput.value);
+            }
+        });
+
+        // Восстанавливаем данные при загрузке
+        window.addEventListener('load', () => {
+            const savedInput = localStorage.getItem('glassCutter_lastInput');
+            if (savedInput) {
+                const partsInput = document.getElementById('partsInput');
+                if (partsInput) {
+                    partsInput.value = savedInput;
+                }
+            }
+        });
+
+        // Проверка онлайн/оффлайн статуса
+        window.addEventListener('online', () => {
+            document.getElementById('offline-notice').style.display = 'none';
+        });
+
+        window.addEventListener('offline', () => {
+            document.getElementById('offline-notice').style.display = 'block';
+        });
+
+        // Проверяем при загрузке
+        if (!navigator.onLine) {
+            document.getElementById('offline-notice').style.display = 'block';
+        }
+
+        // Горячие клавиши
+        document.addEventListener('DOMContentLoaded', function () {
+            const partsInput = document.getElementById('partsInput');
+            if (partsInput) {
+                partsInput.addEventListener('keydown', function (e) {
+                    if (e.ctrlKey && e.key === 'Enter') {
+                        calculateOptimization();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

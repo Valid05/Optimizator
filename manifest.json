@@ -1,0 +1,21 @@
+{
+  "name": "Оптимизатор раскроя стекла",
+  "short_name": "Раскрой стекла",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#4a6fa5",
+  "background_color": "#ffffff",
+  "description": "Интеллектуальная оптимизация раскроя стекла с использованием AI алгоритмов",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔪</text></svg>",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAkElEQVQ4jWNgGAWjYBSMglEwCkTlAwcAADMDAwMDI7xOQoYAAwMDQz8DA0M/AyMD9Bi1f0ITAwMDQz8DA0M/AyMDAwMDAwMDEyMDAwMDAyMjAwMDw39GBgZGRkZGRkYGBkZGBkYGBgYGBkZGBgZGBgZGBgZGBkYGRkZGRgZGRkZGRgZGBkYGBkZGRkZGBiYAAQAA5qw3s6ro9B4AAAAASUVORK5CYII=",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
